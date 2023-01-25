@@ -19,7 +19,7 @@
 .writeform{
     position: relative;
 }
-.writeicon{
+.writeicon1{
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -32,10 +32,11 @@
     cursor: pointer;
 }
 .writeinput{
-    font-size: 30px;
+    font-size: 15px;
     border: none;
     padding: 20px;
-    width: 70vw;
+    width: 35vw;
+    text-underline-offset: 0.5px;
 }
 .writeinput:focus{
     outline: none;

@@ -24,13 +24,25 @@ export default function TopBar()
                 <Link className='link' to="/">HOME</Link>
               </li>
               <li className="toplistitem">
-              <Link className='link' to="/">ABOUT</Link>
+              <Link className='link' to="/write">OEUVRE</Link>
               </li>
               <li className="toplistitem">
-              <Link className='link' to="/quiz">QUIZ</Link>
+              <Link className='link' to="/artistes">{user && "ARTISTES"}</Link>
               </li>
               <li className="toplistitem">
-              <Link className='link' to="/write">WRITE</Link>
+              <Link className='link' to="/bibliographies">{user && "BIBLIOGRAPHIES"}</Link>
+              </li>
+              <li className="toplistitem">
+              <Link className='link' to="/expositions">{user && "EXPOSITIONS"}</Link>
+              </li><
+                li className="toplistitem">
+              <Link className='link' to="/prets">{user && "PRETS"}</Link>
+              </li>
+              <li className="toplistitem">
+              <Link className='link' to="/restaurations">{user && "RESTAURATIONS"}</Link>
+              </li>
+              <li className="toplistitem">
+              <Link className='link' to="/signatures">{user && "SIGNATURES"}</Link>
               </li>
               <li className="toplistitem" onClick={handleLogout}>
                 {user && "LOGOUT"}

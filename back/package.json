@@ -11,7 +11,9 @@
   "name": "back",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "yarn": "^1.22.19"
+  },
   "scripts": {
     "start": "nodemon index.js "
   },

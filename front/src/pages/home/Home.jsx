@@ -5,6 +5,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./home.css";
 import axios from 'axios'
 import { useLocation } from "react-router-dom";
+import Search from "../../Search";
 export default function Home() {
   const [postes,setPostes] = useState([]);
   const {search} =useLocation();
@@ -19,6 +20,7 @@ export default function Home() {
   return (
     <>
     <Header/>
+
     <div className="home">
       <Postes postes={postes}/>
       <Sidebar/>

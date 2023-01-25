@@ -16,9 +16,9 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
         <div className="sidebaritem">
-            <span className="sidebartitle">ABOUT ME</span>
+            <span className="sidebartitle">ABOUT US</span>
             <img src={langages} alt=""/>
-            <p>Blogging is an excellent way to bolster your reputation as a developer. You can share the knowledge you've gained over years of experience, and inspire other developers. The more interesting, useful content you have, the more people will follow you.</p>
+            <p>a hotel that welcomes visitors from all over the world. “Exhibiting artistic works in a public space would tear down the wall that separates what is inspired from what is concrete. This is what the artists themselves dream of. The latter create a parallel life that Mohamed Amouri has worked to put within everyone's reach. Over time, the one that everyone would like to live. That one can live art, this idea became possible in Hasdrubal.</p>
         </div>
         <div className="sidebaritem">
             <span className="sidebartitle">CATEGORIES</span>

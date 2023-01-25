@@ -6,6 +6,16 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users")
 const postRoute = require("./routes/postes")
 const catRoute = require("./routes/categories")
+const acquisationsRoute = require("./routes/acquisations")
+const artistsRoute = require("./routes/artists")
+const bibliographiesRoute = require("./routes/bibliographies")
+const expositionsRoute = require("./routes/expositions")
+const localisaionConservationsRoute = require("./routes/localisaionConservations")
+const pretsRoute = require("./routes/prets")
+const redactionNoticeInventaireRoute = require("./routes/redactionNoticeInventaires")
+const restaurationsRoute = require("./routes/restaurations")
+const signaturesRoute = require("./routes/signatures")
+
 const multer = require("multer");
 const path = require("path")
 
@@ -35,6 +45,16 @@ app.use("/api/auth",authRoute);
 app.use("/api/users",userRoute);
 app.use("/api/postes",postRoute);
 app.use("/api/categories",catRoute);
+app.use("/api/acquisation",acquisationsRoute);
+app.use("/api/artist",artistsRoute);
+app.use("/api/bibliographie",bibliographiesRoute);
+app.use("/api/exposition",expositionsRoute);
+app.use("/api/localisaionConservation",localisaionConservationsRoute);
+app.use("/api/pret",pretsRoute);
+app.use("/api/redactionNoticeInventaire",redactionNoticeInventaireRoute);
+app.use("/api/restauration",restaurationsRoute);
+app.use("/api/signature",signaturesRoute);
+
 
 
 

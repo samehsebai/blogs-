@@ -13,7 +13,19 @@ export default function Singlepost() {
   const PF = "http://localhost:5000/images/";
   const {user} = useContext(Context)
     const [title,setTitle] = useState("")
-    const [desc,setDesc] = useState("")
+    const [nomPrenom] = useState("")
+  const [dateCreation] = useState("")
+  const [materiaux] = useState("")
+  const [support] = useState("")
+  const [dimensions2D] = useState("")
+  const [dimensions3D] = useState("")
+  const [poid] = useState("")
+  const [nbElements] = useState("")
+  const [numTirage] = useState("")
+  const [typeTirage] = useState("")
+  const [artisteId,setartisteId]= useState("")
+  const [categories,setcategories] = useState("")
+  const [desc,setDesc] = useState("")
     const [updateMode,setUpdateMode] = useState(false)
   useEffect(()=>{
 const getPost = async()=>{
@@ -82,7 +94,21 @@ const handleUpdate = async () =>{
                             />)
                  :(
                 <p className="singlePostDesc">{desc}</p>
-                 )}
+                )}
+          
+        <p>
+        nomPrenom:{nomPrenom}<br/>
+        dateCreation:{dateCreation}<br/>
+        materiaux:{materiaux}<br/>
+        support:{support}<br/>
+        dimensions2D:{dimensions2D}<br/>
+        dimensions3D:{dimensions3D}<br/>
+        poid:{poid}<br/>
+        nbElements:{nbElements}<br/>
+        numTirage:{numTirage}<br/>
+        typeTirage:{typeTirage}<br/>
+        </p>
+                
                     {updateMode&&
                     <button className="singlePostButton"
                     onClick={handleUpdate}

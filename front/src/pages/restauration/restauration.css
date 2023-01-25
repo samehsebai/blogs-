@@ -1,0 +1,56 @@
+.restauration{
+    height: calc(120vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(rgba(44, 30, 172, 0.119),rgba(255, 255, 255, 0.216)), url('https://www.nikaiacours.fr/wp-content/uploads/2019/12/login-background.jpg');
+    background-size: cover;
+}
+.restaurationtitle{
+    font-size: 50px;
+    color: aliceblue;
+    margin-bottom: 20px;
+}
+.restaurationform{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.form_class {
+    width: 500px;
+    padding: 40px;
+    border-radius: 8px;
+    background-color: rgb(228, 250, 255);
+    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+}
+.restaurationform > label{
+    margin: 10px 0;
+
+}
+.restaurationinput{
+    padding: 10px;
+    background-color: white;
+    border: none;
+}
+.restaurationbutton1{
+    position: relative;
+    margin-top: 20px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: teal;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
+.loginbutton1{
+position: absolute;
+top: 60px;
+right: 20px;
+background-color: rgb(56, 81, 239);
+cursor: pointer;
+border: none;
+padding: 10px;
+color: white;
+border-radius: 10px;
+}

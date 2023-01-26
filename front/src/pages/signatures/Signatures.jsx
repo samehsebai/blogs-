@@ -7,7 +7,12 @@ import "./signatures.css"
 
 function Signatures() {
 
+  const [updateMode, setUpdateMode] = useState(false)
+
+  const [localisationOeuvre,setlocalisationOeuvre] = useState("")
+  const [dec,setdec] = useState("")
   const [signatures, setsignatures] = useState([]);
+  const [signature, setsignature] = useState();
   const {search} =useLocation();
   useEffect(() => {
   const signaturesdata = async () => {
@@ -21,6 +26,29 @@ const handleDelete = async (id) => {
     window.location.replace("/signatures")
  };
 
+ const handleUpdate1 = async (id) => {
+  try{
+  console.log(id)
+  const { data } = await axios.get(`/signature/${id}`);
+  console.log(data)
+  setsignature(data)
+
+  setlocalisationOeuvre(signature.localisationOeuvre)
+  setdec(signature.dec)
+
+  setUpdateMode(true)
+} catch (err) {
+  console.log("echec")
+}
+  
+};
+
+const handleUpdateAll = async () => {
+  await axios.put(`/signature/${signature._id}`,{localisationOeuvre,dec})
+  //setUpdateMode(false)
+  window.location.replace("/signatures")
+};
+
   return (
  <div className='signatures'>
 <div className="writeicon">
@@ -28,6 +56,7 @@ const handleDelete = async (id) => {
 <i class="fa-solid fa-plus"></i>
 </Link>
 </div>
+{ !updateMode ? (
 <table id="customers">
   <tr>
     <th>localisationOeuvre</th>
@@ -39,14 +68,45 @@ const handleDelete = async (id) => {
   <tr>
     <td>{art.localisationOeuvre}</td>
     <td>{art.dec}</td>
-    <td><i clasName="singleposteicon" id="first" clas="fa-solid fa-pen-to-square" ></i></td>
-    <td><i clasName="singleposteicon" id="last" clas="fa-solid fa-delete-left"></i></td>
+    <td><i clasName="singleposteicon" id="first" onClick={() => handleUpdate1(art._id)} class="fa-solid fa-pen-to-square" ></i></td>
+    <td><i clasName="singleposteicon" id="last" onClick={() => handleDelete(art._id)} class="fa-solid fa-delete-left"></i></td>
   </tr>
       ))}
 
   
   
+</table>):(
+  <table id="customers">
+  <tr>
+  <th>localisationOeuvre</th>
+    <th>dec</th>
+    <th>Modifier</th>
+    <th>Supprimer</th>
+  </tr>
+  <tr>
+    <td><input type="text" value={localisationOeuvre} onChange={(e) => setlocalisationOeuvre(e.target.value)}></input></td>
+    <td><input type="text" value={dec} onChange={(e) => setdec(e.target.value)}></input></td>
+    <td>
+    
+    <button
+              className="bt-m"
+              type="submit"
+              onClick={() =>
+                handleUpdateAll()
+              }
+            >
+              Valider
+      </button>
+    
+    </td>
+  </tr>
+  
 </table>
+
+
+
+)}
+
     </div>
   );
 }

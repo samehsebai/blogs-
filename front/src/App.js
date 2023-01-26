@@ -29,6 +29,8 @@ import Prets from "./pages/prets/Prets";
 import Restaurations from "./pages/restaurations/Restaurations";
 import Signatures from "./pages/signatures/Signatures";
 
+import ModifyArtist from "./components/modifyArtist/Artiste";
+
 
 
 /*
@@ -39,6 +41,7 @@ import Signatures from "./pages/signatures/Signatures";
 
 function App() {
   const {user} = useContext(Context);
+  
   return (
     <Router>
     <TopBar/>
@@ -63,6 +66,8 @@ function App() {
         <Route path="/prets" element={<Prets/>} />
         <Route path="/restaurations" element={<Restaurations/>} />
         <Route path="/signatures" element={<Signatures/>} />
+
+        <Route path="/ModifyArtiste" element={<ModifyArtist />}  />
 
       
 

@@ -13,12 +13,12 @@ export default function Singlepost() {
   const PF = "http://localhost:5000/images/";
   const {user} = useContext(Context)
     const [title,setTitle] = useState("")
-    const [nomPrenom] = useState("")
-  const [dateCreation] = useState("")
-  const [materiaux] = useState("")
-  const [support] = useState("")
-  const [dimensions2D] = useState("")
-  const [dimensions3D] = useState("")
+    const [nomPrenom,setnomPrenom] = useState("")
+  const [dateCreation,setdateCreation] = useState("")
+  const [materiaux,setmateriaux] = useState("")
+  const [support,setsupport] = useState("")
+  const [dimensions2D,setdimensions2D] = useState("")
+  const [dimensions3D,setdimensions3D] = useState("")
   const [poid] = useState("")
   const [nbElements] = useState("")
   const [numTirage] = useState("")
@@ -34,6 +34,12 @@ const getPost = async()=>{
   setPost(res.data)
   setTitle(res.data.title)
   setDesc(res.data.desc)
+  setnomPrenom(res.data.nomPrenom)
+  setdateCreation(res.data.dateCreation)
+  setsupport(res.data.support)
+  setdimensions2D(res.data.dimensions2D)
+  setdimensions3D(res.data.dimensions3D)
+  setmateriaux(res.data.materiaux)
 };
 getPost()
   },[path]);
@@ -50,9 +56,17 @@ const handleUpdate = async () =>{
         await axios.put(`/postes/${post._id}`,{
              username:user.username,
                     title:title,
-                    desc:desc }
+                    desc:desc,
+                    nomPrenom:nomPrenom,
+                    dateCreation:dateCreation,
+                    support:support,
+                    dimensions2D:dimensions2D,
+                    dimensions3D:dimensions3D,
+                    materiaux:materiaux,
+                  
+                  }
         )
-        window.location.replace("/")
+        window.location.replace(`/post/${post._id}`)
         setUpdateMode(false);
     }catch(err) {}
 }
@@ -62,11 +76,45 @@ const handleUpdate = async () =>{
         <div className="singlepostwrapper">
           {post.photo &&
         <img src={PF+post.photo} alt="" className="singlepostimg" />}
-        { updateMode? <input type="text" value={title} 
+        { updateMode? (<center>
+                    <input type="text" value={title} 
                     className="singleposttitleinput" 
                     autoFocus 
-                    onChange={(e)=>setTitle(e.target.value)}/> 
-                    :(
+                    onChange={(e)=>setTitle(e.target.value)} placeholder="Title"/> <br/>
+
+                    <input type="text" value={nomPrenom} 
+                    className="singleposttitleinput" 
+                    autoFocus 
+                    onChange={(e)=>setnomPrenom(e.target.value)} placeholder="nom Prenom"/> <br/>
+                    
+                    <input type="text" value={dateCreation} 
+                    className="singleposttitleinput" 
+                    autoFocus 
+                    onChange={(e)=>setdateCreation(e.target.value)}></input> <br/>
+
+                    <input type="text" value={support} 
+                    className="singleposttitleinput" 
+                    autoFocus 
+                    onChange={(e)=>setsupport(e.target.value)} placeholder="support"/> <br/>
+
+                    <input type="text" value={dimensions2D} 
+                    className="singleposttitleinput" 
+                    autoFocus 
+                    onChange={(e)=>setdimensions2D(e.target.value)} placeholder="dimensions2D"/> <br/>
+
+                    <input type="text" value={dimensions3D} 
+                    className="singleposttitleinput" 
+                    autoFocus 
+                    onChange={(e)=>setdimensions3D(e.target.value)} placeholder="dimensions3D"/> <br/>
+
+                    <input type="text" value={materiaux} 
+                    className="singleposttitleinput" 
+                    autoFocus 
+                    onChange={(e)=>setmateriaux(e.target.value)} placeholder="materiaux"/> <br/>
+                    
+                    </center>
+                   ) :(
+                    <div>
         <h1 className="singleposttitle">
             {post.title}
             {post.username === user?.username && (
@@ -74,8 +122,21 @@ const handleUpdate = async () =>{
             <i className="singleposteicon" id="first" class="fa-solid fa-pen-to-square" onClick={() => setUpdateMode(true)}></i>
             <i className="singleposteicon" id="last" class="fa-solid fa-delete-left" onClick={handleDelete}></i>
             </div>
+
             )}
         </h1>
+        <center>
+        <table>
+        <tr><td>nomPrenom:</td><td><b>{nomPrenom}</b></td></tr><br/>
+        <tr><td>dateCreation:</td><td><b>{dateCreation}</b></td></tr><br/>
+        <tr><td>support:</td><td><b>{support}</b></td></tr><br/>
+        <tr><td>dimensions2D:</td><td><b>{dimensions2D}</b></td></tr><br/>
+        <tr><td>dimensions3D:</td><td><b>{dimensions3D}</b></td></tr><br/>
+        <tr><td>materiaux:</td><td><b>{materiaux}</b></td></tr><br/>
+
+        </table>
+        </center>
+        </div>
         )}
         <div className="singlepostinfo">
             <span className="singlepostauthor">Author :
@@ -83,7 +144,11 @@ const handleUpdate = async () =>{
             <b>{post.username}</b>
             </Link>
             </span>
-            <span className="singlepostdate">{new Date(post.createdAt).toDateString()}</span>
+            <span className="singlepostdate">
+            <Link to={`/?createdAt=${post.createdAt}`} className="link">
+              {new Date(post.createdAt).toDateString()}
+            </Link>
+            </span>
         </div>
         <div className="singlepostdiscription">
         </div>
@@ -96,20 +161,7 @@ const handleUpdate = async () =>{
                 <p className="singlePostDesc">{desc}</p>
                 )}
           
-        <p>
-        nomPrenom:{nomPrenom}<br/>
-        dateCreation:{dateCreation}<br/>
-        materiaux:{materiaux}<br/>
-        support:{support}<br/>
-        dimensions2D:{dimensions2D}<br/>
-        dimensions3D:{dimensions3D}<br/>
-        poid:{poid}<br/>
-        nbElements:{nbElements}<br/>
-        numTirage:{numTirage}<br/>
-        typeTirage:{typeTirage}<br/>
-        </p>
-                
-                    {updateMode&&
+                            {updateMode&&
                     <button className="singlePostButton"
                     onClick={handleUpdate}
                     > Update </button>}
